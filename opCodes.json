@@ -2,10 +2,24 @@
   "arithmetic": {
     "0x000x": "Add: acc += Vx",
     "0x001x": "Sub: acc -= vX"
-  }
+  },
 
   "io":{
     "0x100x": "Print int: print contents Vx as int",
     "0x101x": "Print int: print contents Vx as char"
+  }
+
+  "movement":{
+    "0x200x": "mem[vX] -> acc",
+    "0x210x": "acc - > mem[vX]",
+
+    "0x23xy": "mem[vX] -> reg[vY]",
+    "0x24xy": "reg[vX] -> mem[vY]",
+
+    "0x250x": "acc -> reg[vX]",
+    "0x260x": "mem[vX] -> acc",
+
+    "0x27xy": "reg[vX] -> reg[vY]",
+    "0x28xy": "mem[vX] -> mem[vy]"
   }
 }
