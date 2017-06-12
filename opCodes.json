@@ -7,7 +7,7 @@
   "io":{
     "0x100x": "Print int: print contents Vx as int",
     "0x101x": "Print int: print contents Vx as char"
-  }
+  },
 
   "movement":{
     "0x200x": "mem[vX] -> acc",
