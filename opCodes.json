@@ -1,0 +1,11 @@
+{
+  "arithmetic": {
+    "0x000x": "Add: acc += Vx",
+    "0x001x": "Sub: acc -= vX"
+  }
+
+  "io":{
+    "0x100x": "Print int: print contents Vx as int",
+    "0x101x": "Print int: print contents Vx as char"
+  }
+}
