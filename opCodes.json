@@ -1,25 +1,23 @@
 {
   "arithmetic": {
-    "0x000x": "Add: acc += Vx",
-    "0x001x": "Sub: acc -= vX"
+    "0x000x": ["Add: acc += Vx", ""],
+    "0x001x": ["Sub: acc -= vX", ""]
   },
 
   "io":{
-    "0x100x": "Print int: print contents Vx as int",
-    "0x101x": "Print int: print contents Vx as char"
+    "0x100x": ["Print int: print contents Vx as int", ""],
+    "0x101x": ["Print int: print contents Vx as char", ""]
   },
 
   "data":{
-    "0x200x": "mem[reg[vX]] -> acc",
-    "0x210x": "acc - > mem[reg[vX]]",
+    "0x200x NNNN": ["mem[NNNN] -> reg[vX]", ""],
+    "0x210x NNNN": ["reg[vX] -> mem[NNNN]", ""],
 
-    "0x23xy": "mem[[vX]] -> reg[vY]",
-    "0x24xy": "reg[vX] -> mem[reg[vY]]",
+    "0x22xy": ["mem[reg[vX]] -> reg[vY]", ""],
+    "0x23xy": ["reg[vX] -> mem[reg[vY]]", ""],
 
-    "0x250x": "acc -> reg[vX]",
-    "0x260x": "reg[vX] -> acc",
-
-    "0x27xy": "reg[vX] -> reg[vY]",
-    "0x28xy": "mem[reg[vX]] -> mem[reg[vy]]"
+    "0x24xy": ["reg[vX] -> reg[vY]", ""],
+    "0x25xy": ["mem[reg[vX]] -> mem[reg[vy]]", ""],
+    "0x2600 NNNN NNNN": ["mem[NNNN] -> mem[NNNN]", ""]
   }
 }

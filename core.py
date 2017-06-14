@@ -5,9 +5,15 @@ class Core:
     def __init__(self):
         self.mem = memory.Memory()
         self.pc = np.uint16(0)
+        self.running = True
+
+    def incer_getter(self):
+        NNNN = self.mem.mem[self.pc]
+        self.pc += 1
+        return NNNN
 
     def step(self):
-        currCell = self.mem.mem[self.pc]
+        currCell = self.incer_getter()
         ins = [(0xf000 & currCell) >> 12,
                (0x0f00 & currCell) >> 8,
                (0x00f0 & currCell) >> 4,
@@ -19,7 +25,11 @@ class Core:
             if ins[1] == 0x1:
                 self._print_char(chr(ins[2] << 4 + ins[3]))
 
-        #print(hex(currCell), list(hex(i) for i in ins))
+        if ins[0] == 0x2:
+            if ins[1] == 0x0:
+                self._mem_to_reg(ins[3], self.incer_getter())
+            if ins[1] == 0x1:
+                self._reg_to_mem(ins[3], self.incer_getter())
 
 
     def _add(self, vX):
@@ -33,3 +43,9 @@ class Core:
 
     def _print_char(self, vX):
         print(chr(self.mem.reg[vX]))
+
+    def _mem_to_reg(self, vX, NNNN):
+        self.mem.reg[vX] = self.mem.mem[NNNN]
+
+    def _reg_to_mem(self, vX, NNNN):
+        self.mem.mem[NNNN] = self.mem.reg[vX]
