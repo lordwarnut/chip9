@@ -1,40 +1,26 @@
+import numpy as np
 class CodeGen:
-    class Data:
+    class MEM:
         @staticmethod
-        def MEMTOACC(vX):
-            return 0x2000 + vX
-
-        @staticmethod
-        def ACCTOMEM(vX):
-            return 0x2100 + vX
-
+        def mem_to_reg(NNNN, vX):
+            return [0x2000 + vX % 16, NNNN % 65536]
 
         @staticmethod
-        def MEMTOREG(add, vY):
-            return 0x2300 + add << 4 + vY
+        def reg_to_mem(vX, NNNN):
+            return [0x2100 + vX % 16, NNNN % 65536]
 
         @staticmethod
-        def REGTOMEM(vX, add):
-            return 0x2400 + vX << 4 + add
-
-
-        @staticmethod
-        def ACCTOREG(vX):
-            return 0x2500 + vX
+        def memx_to_reg(vX, vY):
+            return [0x2200 + ((vX % 16) << 4) + vY]
 
         @staticmethod
-        def REGTOACC(vX):
-            return 0x2600 + vX
-
-
-        @staticmethod
-        def REGTOREG(vX, vY):
-            0x2700 + + vX << 4 + vY
+        def reg_to_memx(vX, vY):
+            return [0x2300 + ((vX % 16) << 4) + vY]
 
         @staticmethod
-        def MEMTOMEM(add1, vY):
-            0x2800 + + vX << 4 + vY
-
+        def data(NNNN):
+            return [NNNN % 65536]
     class IO:
         @staticmethod
-        def INTPRINT():
+        def int_print():
+            pass

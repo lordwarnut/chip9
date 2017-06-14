@@ -27,10 +27,13 @@ class Core:
 
         if ins[0] == 0x2:
             if ins[1] == 0x0:
-                self._mem_to_reg(ins[3], self.incer_getter())
+                self._mem_to_reg(self.incer_getter(), ins[3] )
             if ins[1] == 0x1:
                 self._reg_to_mem(ins[3], self.incer_getter())
-
+            if ins[1] == 0x2:
+                self._memx_to_reg(ins[2], ins[3])
+            if ins[1] == 0x3:
+                self._reg_to_memx(ins[2], ins[3])
 
     def _add(self, vX):
         self.mem.acc += self.mem.reg[vX]
@@ -38,14 +41,22 @@ class Core:
     def _sub(self, vX):
         self.mem.acc -= self.mem.reg[vX]
 
+
     def _print_int(self, vX):
         print(self.mem.reg[vX])
 
     def _print_char(self, vX):
         print(chr(self.mem.reg[vX]))
 
-    def _mem_to_reg(self, vX, NNNN):
+
+    def _mem_to_reg(self, NNNN, vX):
         self.mem.reg[vX] = self.mem.mem[NNNN]
 
     def _reg_to_mem(self, vX, NNNN):
         self.mem.mem[NNNN] = self.mem.reg[vX]
+
+    def _memx_to_reg(self, vX, vY):
+        self.mem.reg[vX] = self.mem.mem[self.mem.reg[vY]]
+
+    def _reg_to_memx(self, vX, vY):
+        self.mem.mem[self.mem.reg[vX]] = self.mem.reg[vY]
